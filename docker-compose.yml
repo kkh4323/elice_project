@@ -17,6 +17,22 @@ services:
     networks:
       - elice_network
 
+#  elicelab_reservation_frontend:
+#    container_name: elicelab_reservation_frontend
+#    build:
+#      dockerfile: Dockerfile
+#      context: ./frontend
+##      target: development
+#    volumes:
+#      - ./frontend:/usr/src/frontend
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - elicelab_reservation_nestjs_01
+#      - elicelab_reservation_nestjs_02
+#    networks:
+#      - elice_network
+
   elicelab_reservation_nestjs_01:
     container_name: elicelab_reservation_nestjs_01
     build:
@@ -24,12 +40,13 @@ services:
       context: ./backend
       target: development
     volumes:
-      - ./backend:/usr/src/app
+      - ./backend:/usr/src/backend
     env_file:
       - ./backend/.env
     command: npm run start:dev
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
+#      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "8000:8000"
     depends_on:
       - elicelab_reservation_postgres
       - elicelab_reservation_redis
@@ -44,12 +61,13 @@ services:
       context: ./backend
       target: development
     volumes:
-      - ./backend:/usr/src/app
+      - ./backend:/usr/src/backend
     env_file:
       - ./backend/.env
     command: npm run start:dev
     ports:
-      - "8001:${SERVER_PORT}"
+      - "8001:8000"
+#      - "8001:${SERVER_PORT}"
     depends_on:
       - elicelab_reservation_postgres
       - elicelab_reservation_redis
