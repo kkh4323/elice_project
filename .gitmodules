@@ -1,6 +1,6 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/kkh4323/elicelab_reservation_project.git
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/kkh4323/elicelab_reservation_project_frontend.git
+[submodule "admin"]
+	path = admin
+	url = https://github.com/kkh4323/elicelab_reservation_admin.git
